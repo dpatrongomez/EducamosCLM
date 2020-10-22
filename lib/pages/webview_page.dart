@@ -8,6 +8,7 @@ class WebViewPage extends StatelessWidget {
       Completer<WebViewController>();
   @override
   Widget build(BuildContext context) {
+    final String _url = ModalRoute.of(context).settings.arguments as String;
     return Scaffold(
       appBar: AppBar(
         title: Text('EducamosCLM'),
@@ -15,8 +16,7 @@ class WebViewPage extends StatelessWidget {
       ),
       body: Builder(builder: (BuildContext context) {
         return WebView(
-          initialUrl:
-              'https://papas.jccm.es/accesopapas/ciudadanoAutenticado/loginSso.xhtml',
+          initialUrl: _url,
           javascriptMode: JavascriptMode.unrestricted,
           onWebViewCreated: (WebViewController webViewController) {
             _controller.complete(webViewController);

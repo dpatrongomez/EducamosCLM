@@ -1,5 +1,7 @@
+import 'package:EducamosCLM/pages/aulavirtual_page.dart';
 import 'package:flutter/material.dart';
-import 'webview_page.dart';
+import 'pages/home_page.dart';
+import 'pages/webview_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -16,7 +18,9 @@ class MyApp extends StatelessWidget {
         ),
         initialRoute: '/',
         routes: {
-          '/': (BuildContext context) => WebViewPage(),
+          '/': (BuildContext context) => HomePage(),
+          'webview': (BuildContext context) => WebViewPage(),
+          'virtual': (BuildContext context) => AulaVirtualPage(),
         });
   }
 }
