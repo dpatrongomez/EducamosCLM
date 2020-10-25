@@ -1,5 +1,5 @@
-import 'package:EducamosCLM/griddashboard.dart';
-import 'package:EducamosCLM/griddashboard2.dart';
+import 'package:EducamosCLM/components/gridplataformas.dart';
+import 'package:EducamosCLM/components/gridvirtual.dart';
 import 'package:flutter/material.dart';
 
 class AulaVirtualPage extends StatelessWidget {
@@ -37,7 +37,8 @@ class AulaVirtualPage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Seleccione su aula'),
       ),
-      body: GridDashboard2(myList: [item1, item2, item3, item4, item5, item6]),
+      body: GridVirtual(
+          myList: [item1, item2, item3, item4, item5, item6, item7]),
     );
   }
 }

@@ -1,4 +1,4 @@
-import 'package:EducamosCLM/griddashboard.dart';
+import 'package:EducamosCLM/components/gridplataformas.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -70,11 +70,11 @@ class HomePage extends StatelessWidget {
         ),
         body: TabBarView(
           children: [
-            GridDashboard(
+            GridPlataformas(
               myList: [item1, item2, item3],
               text: 'FAMILIAS, ALUMNADO, DOCENTES',
             ),
-            GridDashboard(
+            GridPlataformas(
               myList: [item4, item5, item6],
               text: 'PERSONAL DE LOS CENTROS EDUCATIVOS',
             ),

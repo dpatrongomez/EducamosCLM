@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class GridDashboard extends StatelessWidget {
+class GridPlataformas extends StatelessWidget {
   final List<Items> myList;
   final String text;
-  const GridDashboard({@required this.myList, @required this.text});
+  const GridPlataformas({@required this.myList, @required this.text});
 
   @override
   Widget build(BuildContext context) {
