@@ -82,6 +82,7 @@ class GridVirtual extends StatelessWidget {
                     Image.network(
                       data.img,
                       width: 42,
+                      color: Theme.of(context).primaryColor,
                     ),
                     SizedBox(
                       height: 14,

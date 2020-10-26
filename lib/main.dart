@@ -14,8 +14,9 @@ class MyApp extends StatelessWidget {
         title: 'EducamosCLM',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          visualDensity: VisualDensity.adaptivePlatformDensity,
-        ),
+            visualDensity: VisualDensity.adaptivePlatformDensity,
+            primaryColor: const Color(0xff012d5a),
+            accentColor: Colors.orangeAccent),
         initialRoute: '/',
         routes: {
           '/': (BuildContext context) => HomePage(),
