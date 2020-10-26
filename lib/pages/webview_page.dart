@@ -3,9 +3,16 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-class WebViewPage extends StatelessWidget {
+class WebViewPage extends StatefulWidget {
+  @override
+  _WebViewPageState createState() => _WebViewPageState();
+}
+
+class _WebViewPageState extends State<WebViewPage> {
   final Completer<WebViewController> _controller =
       Completer<WebViewController>();
+  bool isLoading = true;
+
   @override
   Widget build(BuildContext context) {
     final String _url = ModalRoute.of(context).settings.arguments as String;
@@ -14,22 +21,31 @@ class WebViewPage extends StatelessWidget {
         title: Text('EducamosCLM'),
         centerTitle: true,
       ),
-      body: Builder(builder: (BuildContext context) {
-        return WebView(
-          initialUrl: _url,
-          javascriptMode: JavascriptMode.unrestricted,
-          onWebViewCreated: (WebViewController webViewController) {
-            _controller.complete(webViewController);
-          },
-          onPageStarted: (String url) {
-            print('Page started loading: $url');
-          },
-          onPageFinished: (String url) {
-            print('Page finished loading: $url');
-          },
-          gestureNavigationEnabled: true,
-        );
-      }),
+      body: Stack(
+        children: <Widget>[
+          WebView(
+            initialUrl: _url,
+            javascriptMode: JavascriptMode.unrestricted,
+            onWebViewCreated: (WebViewController webViewController) {
+              _controller.complete(webViewController);
+            },
+            onPageStarted: (String url) {
+              print('Page started loading: $url');
+            },
+            onPageFinished: (finish) {
+              setState(() {
+                isLoading = false;
+              });
+            },
+            gestureNavigationEnabled: true,
+          ),
+          isLoading
+              ? Center(
+                  child: CircularProgressIndicator(),
+                )
+              : Stack(),
+        ],
+      ),
     );
   }
 }
