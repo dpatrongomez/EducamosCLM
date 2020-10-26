@@ -44,7 +44,8 @@ android {
 
     defaultConfig {
         applicationId "es.dpatrongomez.papas"
-        minSdkVersion 16
+        // Required by the Flutter WebView plugin.
+        minSdkVersion 19
         targetSdkVersion 30
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
