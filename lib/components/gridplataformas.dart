@@ -1,8 +1,9 @@
+import 'package:EducamosCLM/model/item_model.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class GridPlataformas extends StatelessWidget {
-  final List<Items> myList;
+  final List<Item> myList;
   final String text;
   const GridPlataformas({@required this.myList, @required this.text});
 
@@ -31,32 +32,11 @@ class GridPlataformas extends StatelessWidget {
               children: myList.map((data) {
                 return GestureDetector(
                   onTap: () {
-                    switch (data.title) {
-                      case 'SEGUIMIENTO EDUCATIVO':
-                        Navigator.pushNamed(context, 'webview',
-                            arguments: 'http://papas.jccm.es/');
-                        break;
-                      case 'SECRETARÍA VIRTUAL':
-                        Navigator.pushNamed(context, 'webview',
-                            arguments: 'http://papas.jccm.es/');
-                        break;
-                      case 'ENTORNO DE APRENDIZAJE':
-                        Navigator.pushNamed(context, 'virtual');
-                        break;
-                      case 'ENTORNO COLABORATIVO':
-                        Navigator.pushNamed(context, 'webview',
-                            arguments:
-                                'https://teams.microsoft.com/?domain_hint=educastillalamancha.es');
-                        break;
-                      case 'GESTIÓN DE CENTROS':
-                        Navigator.pushNamed(context, 'webview',
-                            arguments: 'https://delphos.jccm.es/');
-                        break;
-                      case 'EVALÚA':
-                        Navigator.pushNamed(context, 'webview',
-                            arguments: 'https://papas.jccm.es/');
-                        break;
-                      default:
+                    if (data.url == null) {
+                      Navigator.pushNamed(context, 'virtual');
+                    } else {
+                      Navigator.pushNamed(context, 'webview',
+                          arguments: data.url);
                     }
                   },
                   child: Container(
@@ -140,18 +120,4 @@ class GridPlataformas extends StatelessWidget {
       ],
     );
   }
-}
-
-class Items {
-  String title;
-  String subtitle1, subtitle2, subtitle3;
-  String event;
-  String img;
-  Items(
-      {this.title,
-      this.subtitle1,
-      this.subtitle2,
-      this.subtitle3,
-      this.event,
-      this.img});
 }

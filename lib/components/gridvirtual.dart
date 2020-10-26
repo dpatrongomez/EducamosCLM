@@ -1,9 +1,9 @@
-import 'package:EducamosCLM/components/gridplataformas.dart';
+import 'package:EducamosCLM/model/item_model.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class GridVirtual extends StatelessWidget {
-  final List<Items> myList;
+  final List<Item> myList;
 
   const GridVirtual({@required this.myList});
 
@@ -21,44 +21,7 @@ class GridVirtual extends StatelessWidget {
           children: myList.map((data) {
             return GestureDetector(
               onTap: () {
-                switch (data.title) {
-                  case 'Infantil y Primaria':
-                    Navigator.pushNamed(context, 'webview',
-                        arguments:
-                            'https://aulasprimaria2021.castillalamancha.es/login/index.php');
-                    break;
-                  case 'ESO':
-                    Navigator.pushNamed(context, 'webview',
-                        arguments:
-                            'https://aulaseso2021.castillalamancha.es/login/index.php');
-                    break;
-                  case 'Bachillerato':
-                    Navigator.pushNamed(context, 'webview',
-                        arguments:
-                            'https://aulasbach2021.castillalamancha.es/login/index.php');
-                    break;
-                  case 'Ciclos Formativos':
-                    Navigator.pushNamed(context, 'webview',
-                        arguments:
-                            'https://aulasciclos2021.castillalamancha.es/login/index.php/');
-                    break;
-                  case 'Adultos':
-                    Navigator.pushNamed(context, 'webview',
-                        arguments:
-                            'https://aulasepa2021.castillalamancha.es/login/index.php');
-                    break;
-                  case 'Enseñanzas de régimen especial':
-                    Navigator.pushNamed(context, 'webview',
-                        arguments:
-                            'https://aulasregesp2021.castillalamancha.es/login/index.php');
-                    break;
-                  case 'Ciclos Formativos (mod. Elearning)':
-                    Navigator.pushNamed(context, 'webview',
-                        arguments:
-                            'https://aulasfp2021.castillalamancha.es/login/index.php');
-                    break;
-                  default:
-                }
+                Navigator.pushNamed(context, 'webview', arguments: data.url);
               },
               child: Container(
                 decoration: BoxDecoration(
