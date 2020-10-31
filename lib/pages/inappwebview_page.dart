@@ -7,7 +7,7 @@ class InAppWebViewPage extends StatefulWidget {
 }
 
 class _InAppWebViewPageState extends State<InAppWebViewPage> {
-  InAppWebViewController _webViewController;
+  //InAppWebViewController _webViewController;
   double progress = 0;
   @override
   Widget build(BuildContext context) {
@@ -58,7 +58,7 @@ class _InAppWebViewPageState extends State<InAppWebViewPage> {
                     cacheMode: AndroidCacheMode.LOAD_DEFAULT),
               ),
               onWebViewCreated: (InAppWebViewController controller) {
-                _webViewController = controller;
+                //_webViewController = controller;
               },
               onProgressChanged:
                   (InAppWebViewController controller, int progress) {
