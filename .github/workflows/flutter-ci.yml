@@ -40,7 +40,7 @@ jobs:
     #- run: flutter test
     
     # Build apk.
-    - run: flutter run
+    - run: flutter build apk --debug
           
     # Upload generated apk to the artifacts.
     - uses: actions/upload-artifact@v1
