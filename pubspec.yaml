@@ -12,7 +12,7 @@ dependencies:
   google_fonts: ^1.1.1
   flutter_inappwebview: 
     git:
-      url: https://github.com/dpatrongomez/flutter_inappwebview.git
+      url: https://github.com/pichillilorenzo/flutter_inappwebview.git
 
 dev_dependencies:
   flutter_test:
