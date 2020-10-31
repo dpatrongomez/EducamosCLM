@@ -102,7 +102,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "2a54578e978f44140fa5038441b222f341635118"
+      resolved-ref: "73b572beb933c3423861c42f2ff234f1c13f82a4"
       url: "https://github.com/dpatrongomez/flutter_inappwebview.git"
     source: git
     version: "5.0.0"
