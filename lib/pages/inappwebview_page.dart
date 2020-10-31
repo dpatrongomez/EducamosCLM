@@ -53,6 +53,7 @@ class _InAppWebViewPageState extends State<InAppWebViewPage> {
               initialUrl: _url,
               initialOptions: InAppWebViewGroupOptions(
                 android: AndroidInAppWebViewOptions(
+                    useHybridComposition: true,
                     allowFileAccess: true,
                     displayZoomControls: true,
                     cacheMode: AndroidCacheMode.LOAD_DEFAULT),
