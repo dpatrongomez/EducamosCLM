@@ -9,8 +9,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  webview_flutter: ^1.0.5 
   google_fonts: ^1.1.1
+  flutter_inappwebview: 
+    git:
+      url: https://github.com/dpatrongomez/flutter_inappwebview.git
 
 dev_dependencies:
   flutter_test:
