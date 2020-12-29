@@ -1,5 +1,5 @@
-import 'package:EducamosCLM/components/gridvirtual.dart';
-import 'package:EducamosCLM/model/item_model.dart';
+import 'package:educamosclm/components/gridvirtual.dart';
+import 'package:educamosclm/model/item_model.dart';
 import 'package:flutter/material.dart';
 
 class AulaVirtualPage extends StatelessWidget {

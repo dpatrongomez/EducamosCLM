@@ -1,5 +1,5 @@
-import 'package:EducamosCLM/components/gridplataformas.dart';
-import 'package:EducamosCLM/model/item_model.dart';
+import 'package:educamosclm/components/gridplataformas.dart';
+import 'package:educamosclm/model/item_model.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {

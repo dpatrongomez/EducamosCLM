@@ -1,4 +1,4 @@
-import 'package:EducamosCLM/model/item_model.dart';
+import 'package:educamosclm/model/item_model.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
