@@ -1,9 +1,9 @@
 class Item {
-  String title;
-  String subtitle1, subtitle2, subtitle3;
-  String event;
-  String img;
-  String url;
+  String? title;
+  String? subtitle1, subtitle2, subtitle3;
+  String? event;
+  String? img;
+  String? url;
   Item(
       {this.title,
       this.subtitle1,
