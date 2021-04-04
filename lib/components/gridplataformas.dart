@@ -1,11 +1,11 @@
-import 'package:EducamosCLM/model/item_model.dart';
+import '../model/item_model.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class GridPlataformas extends StatelessWidget {
   final List<Item> myList;
   final String text;
-  const GridPlataformas({@required this.myList, @required this.text});
+  const GridPlataformas({required this.myList, required this.text});
 
   @override
   Widget build(BuildContext context) {
@@ -58,8 +58,8 @@ class GridPlataformas extends StatelessWidget {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Image.network(
-                          data.img,
+                        Image.asset(
+                          data.img!,
                           width: 42,
                           color: Theme.of(context).primaryColor,
                         ),
@@ -67,7 +67,7 @@ class GridPlataformas extends StatelessWidget {
                           height: 14,
                         ),
                         Text(
-                          data.title,
+                          data.title!,
                           textAlign: TextAlign.center,
                           style: GoogleFonts.openSans(
                               textStyle: TextStyle(
@@ -79,7 +79,7 @@ class GridPlataformas extends StatelessWidget {
                           height: 8,
                         ),
                         Text(
-                          data.subtitle1,
+                          data.subtitle1!,
                           textAlign: TextAlign.center,
                           style: GoogleFonts.openSans(
                               textStyle: TextStyle(
@@ -91,7 +91,7 @@ class GridPlataformas extends StatelessWidget {
                           height: 4,
                         ),
                         Text(
-                          data.subtitle2,
+                          data.subtitle2!,
                           textAlign: TextAlign.center,
                           style: GoogleFonts.openSans(
                               textStyle: TextStyle(
@@ -103,7 +103,7 @@ class GridPlataformas extends StatelessWidget {
                           height: 4,
                         ),
                         Text(
-                          data.subtitle3,
+                          data.subtitle3!,
                           textAlign: TextAlign.center,
                           style: GoogleFonts.openSans(
                               textStyle: TextStyle(

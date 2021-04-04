@@ -1,11 +1,11 @@
-import 'package:EducamosCLM/model/item_model.dart';
+import '../model/item_model.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class GridVirtual extends StatelessWidget {
   final List<Item> myList;
 
-  const GridVirtual({@required this.myList});
+  const GridVirtual({required this.myList});
 
   @override
   Widget build(BuildContext context) {
@@ -42,8 +42,8 @@ class GridVirtual extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Image.network(
-                      data.img,
+                    Image.asset(
+                      data.img!,
                       width: 42,
                       color: Theme.of(context).primaryColor,
                     ),
@@ -51,7 +51,7 @@ class GridVirtual extends StatelessWidget {
                       height: 14,
                     ),
                     Text(
-                      data.title,
+                      data.title!,
                       textAlign: TextAlign.center,
                       style: GoogleFonts.openSans(
                           textStyle: TextStyle(
