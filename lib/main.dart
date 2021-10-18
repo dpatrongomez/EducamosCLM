@@ -1,9 +1,9 @@
 import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:flutter/material.dart';
 
 import 'pages/aulavirtual_page.dart';
 import 'pages/inappwebview_page.dart';
-import 'package:flutter/material.dart';
 import 'pages/home_page.dart';
 
 Future main() async {
@@ -21,9 +21,13 @@ class MyApp extends StatelessWidget {
         title: 'EducamosCLM',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-            visualDensity: VisualDensity.adaptivePlatformDensity,
-            primaryColor: const Color(0xff012d5a),
-            accentColor: Colors.orangeAccent),
+            colorScheme: ColorScheme.fromSwatch(
+              primarySwatch: Colors.blue,
+            ).copyWith(
+              primary: Color(0xff012d5a),
+              secondary: Colors.orangeAccent,
+            ),
+            visualDensity: VisualDensity.adaptivePlatformDensity),
         initialRoute: '/',
         routes: {
           '/': (BuildContext context) => HomePage(),

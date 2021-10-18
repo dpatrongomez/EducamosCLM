@@ -49,7 +49,7 @@ class _InAppWebViewPageState extends State<InAppWebViewPage> {
         body: Column(children: <Widget>[
           Container(
               child: progress < 1.0
-                  ? LinearProgressIndicator(value: progress)
+                  ? LinearProgressIndicator(value: progress, color: Theme.of(context).colorScheme.secondary,)
                   : Container()),
           Expanded(
               child: InAppWebView(

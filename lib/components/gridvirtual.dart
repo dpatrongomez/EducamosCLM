@@ -25,7 +25,7 @@ class GridVirtual extends StatelessWidget {
               },
               child: Container(
                 decoration: BoxDecoration(
-                  color: Colors.orangeAccent,
+                  color: Theme.of(context).colorScheme.secondary,
                   borderRadius: BorderRadius.circular(10),
                   boxShadow: [
                     BoxShadow(
@@ -45,7 +45,7 @@ class GridVirtual extends StatelessWidget {
                     Image.asset(
                       data.img!,
                       width: 42,
-                      color: Theme.of(context).primaryColor,
+                      color: Theme.of(context).colorScheme.primary,
                     ),
                     SizedBox(
                       height: 14,

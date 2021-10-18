@@ -59,6 +59,7 @@ class HomePage extends StatelessWidget {
           title: Text('EducamosCLM'),
           centerTitle: true,
           bottom: TabBar(
+            indicatorColor: Theme.of(context).colorScheme.secondary,
             tabs: [
               Tab(
                 icon: Icon(Icons.people),
