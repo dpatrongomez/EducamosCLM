@@ -17,7 +17,7 @@ jobs:
       with:
         channel: 'stable'
     - run: flutter pub get
-    - run: flutter run    
+    - run: flutter build apk --debug
     # Upload generated apk to the artifacts.
     - uses: actions/upload-artifact@v2.2.4
       with:
