@@ -35,17 +35,21 @@ android {
     compileSdkVersion 31
     ndkVersion '23.0.7599858'
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
     }
 
-    lintOptions {
-        disable 'InvalidPackage'
-    }
-
     defaultConfig {
         applicationId "es.dpatrongomez.papas"
-        // Required by the Flutter WebView plugin.
         minSdkVersion 19
         targetSdkVersion 31
         versionCode flutterVersionCode.toInteger()
@@ -56,7 +60,7 @@ android {
         release {
             keyAlias keystoreProperties['keyAlias']
             keyPassword keystoreProperties['keyPassword']
-            storeFile file(keystoreProperties['storeFile'])
+            storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
             storePassword keystoreProperties['storePassword']
         }
     }
