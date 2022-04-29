@@ -1,6 +1,5 @@
 import '../model/item_model.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class GridVirtual extends StatelessWidget {
   final List<Item> myList;
@@ -53,11 +52,10 @@ class GridVirtual extends StatelessWidget {
                     Text(
                       data.title!,
                       textAlign: TextAlign.center,
-                      style: GoogleFonts.openSans(
-                          textStyle: TextStyle(
-                              fontSize: 16,
-                              color: Colors.white,
-                              fontWeight: FontWeight.w600)),
+                      style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w600),
                     )
                   ],
                 ),

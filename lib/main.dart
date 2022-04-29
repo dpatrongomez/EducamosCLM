@@ -1,16 +1,10 @@
-import 'package:flutter_downloader/flutter_downloader.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:flutter/material.dart';
 
 import 'pages/aulavirtual_page.dart';
 import 'pages/inappwebview_page.dart';
 import 'pages/home_page.dart';
 
-Future main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Permission.storage.request();
-  await FlutterDownloader.initialize(debug: true);
-
+main() {
   runApp(MyApp());
 }
 
@@ -21,6 +15,7 @@ class MyApp extends StatelessWidget {
         title: 'EducamosCLM',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
+            useMaterial3: true,
             colorScheme: ColorScheme.fromSwatch(
               primarySwatch: Colors.blue,
             ).copyWith(
