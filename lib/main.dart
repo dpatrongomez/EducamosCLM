@@ -1,10 +1,19 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_downloader/flutter_downloader.dart';
+import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
 import 'pages/aulavirtual_page.dart';
 import 'pages/inappwebview_page.dart';
 import 'pages/home_page.dart';
 
-main() {
+Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await FlutterDownloader.initialize(debug: true);
+  if (Platform.isAndroid) {
+    await AndroidInAppWebViewController.setWebContentsDebuggingEnabled(true);
+  }
   runApp(MyApp());
 }
 
@@ -21,6 +30,7 @@ class MyApp extends StatelessWidget {
             ).copyWith(
               primary: Color(0xff012d5a),
               secondary: Colors.orangeAccent,
+              surface: Color(0xff012d5a),
             ),
             visualDensity: VisualDensity.adaptivePlatformDensity),
         initialRoute: '/',

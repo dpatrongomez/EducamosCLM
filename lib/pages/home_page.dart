@@ -56,7 +56,7 @@ class HomePage extends StatelessWidget {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
-          title: Text('EducamosCLM'),
+          title: Text('EducamosCLM', style: TextStyle(color: Colors.white)),
           centerTitle: true,
           bottom: TabBar(
             indicatorColor: Theme.of(context).colorScheme.secondary,
