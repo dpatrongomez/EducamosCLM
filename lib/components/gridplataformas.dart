@@ -15,10 +15,7 @@ class GridPlataformas extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
                   text,
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500),
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
                 ))),
         Expanded(
           child: GridView.count(
@@ -37,22 +34,12 @@ class GridPlataformas extends StatelessWidget {
                           arguments: data.url);
                     }
                   },
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Theme.of(context).colorScheme.secondary,
-                      borderRadius: BorderRadius.circular(10),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.5), //color of shadow
-                          spreadRadius: 5, //spread radius
-                          blurRadius: 5, // blur radius
-                          offset: Offset(0, 2), // changes position of shadow
-                          //first paramerter of offset is left-right
-                          //second parameter is top to down
-                        ),
-                        //you can set more BoxShadow() here
-                      ],
+                  child: Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15.0),
                     ),
+                    color: Theme.of(context).colorScheme.secondary,
+                    elevation: 8,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[

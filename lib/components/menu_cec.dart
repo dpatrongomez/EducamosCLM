@@ -14,9 +14,6 @@ class MenuCEC extends StatelessWidget {
           SizedBox(
             height: 80,
             child: DrawerHeader(
-              decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.primary,
-              ),
               child: Center(
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -31,7 +28,6 @@ class MenuCEC extends StatelessWidget {
                     Text(
                       "EducamosCLM",
                       style: TextStyle(
-                        color: Colors.white,
                         fontSize: 16,
                       ),
                     ),

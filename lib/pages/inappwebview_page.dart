@@ -24,16 +24,15 @@ class _InAppWebViewPageState extends State<InAppWebViewPage> {
     final String _url = ModalRoute.of(context)!.settings.arguments as String;
     return Scaffold(
         appBar: AppBar(
-          iconTheme: IconThemeData(color: Colors.white),
-          title: Text('EducamosCLM', style: TextStyle(color: Colors.white)),
+          title: Text('EducamosCLM'),
           centerTitle: true,
           actions: [
             IconButton(
-              icon: Icon(Icons.home, color: Colors.white),
+              icon: Icon(Icons.home),
               onPressed: () => Navigator.of(context).pop(),
             ),
             IconButton(
-              icon: Icon(Icons.logout, color: Colors.white),
+              icon: Icon(Icons.logout),
               onPressed: () {
                 if (actualUrl.contains('seleccionModulo.xhtml')) {
                   _webViewController.loadUrl(
