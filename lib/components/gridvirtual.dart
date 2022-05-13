@@ -23,10 +23,9 @@ class GridVirtual extends StatelessWidget {
                 Navigator.pushNamed(context, 'webview', arguments: data.url);
               },
               child: Card(
-                 shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15.0),
-      ),
-
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15.0),
+                ),
                 color: Theme.of(context).colorScheme.secondary,
                 elevation: 8,
                 child: Column(
