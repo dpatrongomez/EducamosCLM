@@ -1,11 +1,9 @@
 import 'dart:io';
-
-import 'package:dio/dio.dart';
 import 'package:educamosclm/components/menu_cec.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
-import 'package:android_path_provider/android_path_provider.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class InAppWebViewPage extends StatefulWidget {
@@ -16,7 +14,8 @@ class InAppWebViewPage extends StatefulWidget {
 class _InAppWebViewPageState extends State<InAppWebViewPage> {
   late InAppWebViewController _webViewController;
   CookieManager _cookieManager = CookieManager.instance();
-  final dio = Dio();
+  HttpAuthCredentialDatabase httpAuthCredentialDatabase =
+      HttpAuthCredentialDatabase.instance();
   double progress = 0;
   String actualUrl = '';
   @override
@@ -69,6 +68,7 @@ class _InAppWebViewPageState extends State<InAppWebViewPage> {
                     useShouldOverrideUrlLoading: true,
                   ),
                   android: AndroidInAppWebViewOptions(
+                      useWideViewPort: true,
                       useHybridComposition: true,
                       domStorageEnabled: true,
                       allowFileAccess: true,
@@ -84,7 +84,7 @@ class _InAppWebViewPageState extends State<InAppWebViewPage> {
                   });
                 },
                 onDownloadStartRequest: (controller, url) {
-                  download2(url);
+                  download(url);
                 },
                 onLoadStop: (controller, uri) async {
                   _webViewController = controller;
@@ -122,59 +122,53 @@ class _InAppWebViewPageState extends State<InAppWebViewPage> {
             : null);
   }
 
-  //void download(DownloadStartRequest request) async {
-  //  var status = await Permission.storage.status;
-  //  if (!status.isGranted) {
-  //    await Permission.storage.request();
-  //  }
-  //  List<Cookie> cookies = await _cookieManager.getCookies(url: request.url);
-  //  Map<String, String> headers = {
-  //    'Cookie': cookies.map((e) => e.name + '=' + e.value).join('; '),
-  //    'User-Agent': request.userAgent!,
-  //    'Content-Type': request.mimeType!,
-  //    'Connection': 'keep-alive',
-  //    'Accept-Encoding': 'gzip, deflate, br',
-  //  };
-  //  print(headers);
-  //  final taskId = await FlutterDownloader.enqueue(
-  //    headers: headers,
-  //    url: ,
-  //    fileName: request.suggestedFilename!.replaceAll(';', ''),
-  //    savedDir: await AndroidPathProvider.downloadsPath,
-  //    showNotification:
-  //        true, // show download progress in status bar (for Android)
-  //    openFileFromNotification:
-  //        true, // click on notification to open downloaded file (for Android)
-  //  );
-  //}
+  Future<String?> _findLocalPath() async {
+    var externalStorageDirPath;
+    if (Platform.isAndroid) {
+      final directory = await getExternalStorageDirectory();
+      externalStorageDirPath = directory?.path;
+    }
+    return externalStorageDirPath;
+  }
 
-  Future download2(DownloadStartRequest request) async {
+  void download(DownloadStartRequest request) async {
     var status = await Permission.storage.status;
     if (!status.isGranted) {
       await Permission.storage.request();
     }
-    final savePath = await AndroidPathProvider.downloadsPath;
-    List<Cookie> cookies = await _cookieManager.getCookies(url: request.url);
-    try {
-      Response response = await dio.download(request.url.toString(),
-          savePath + '/' + request.suggestedFilename!.replaceAll(';', ''),
-          options: Options(
-            headers: {
-              'Cookie': cookies.map((e) => e.name + '=' + e.value).join('; '),
-              'User-Agent': request.userAgent!,
-              'Content-Type': request.mimeType!,
-              'Connection': 'keep-alive',
-              'Accept-Encoding': 'gzip, deflate, br',
-            },
-          ));
-
-      File file = File(savePath);
-      var raf = file.openSync(mode: FileMode.write);
-      // response.data is List<int> type
-      raf.writeFromSync(response.data);
-      await raf.close();
-    } catch (e) {
-      print(e);
+    String _localPath = (await _findLocalPath())!;
+    final savedDir = Directory(_localPath);
+    bool hasExisted = await savedDir.exists();
+    if (!hasExisted) {
+      savedDir.create();
     }
+    List<Cookie> cookies = await _cookieManager.getCookies(url: request.url);
+    List<Cookie> filteredCookies = cookies
+        .where((cookie) =>
+            cookie.name == 'JSESSIONIDSECVIR' ||
+            cookie.name == 'papassecvir.jccm.es')
+        .toList();
+    String cookiesString = '';
+    for (Cookie cookie in cookies) {
+      cookiesString += '${cookie.name}=${cookie.value};';
+    }
+    final taskId = await FlutterDownloader.enqueue(
+      headers: {
+        HttpHeaders.cookieHeader: cookiesString,
+        HttpHeaders.userAgentHeader: request.userAgent!,
+        HttpHeaders.contentTypeHeader: request.mimeType!,
+        HttpHeaders.connectionHeader: 'keep-alive',
+        HttpHeaders.acceptEncodingHeader: 'gzip, deflate, br',
+      },
+      url: request.url.toString(),
+      fileName: request.suggestedFilename!.replaceAll(';', ''),
+      savedDir: _localPath,
+      showNotification:
+          true, // show download progress in status bar (for Android)
+      openFileFromNotification: true,
+      saveInPublicStorage: true,
+    );
+
+    print(taskId);
   }
 }

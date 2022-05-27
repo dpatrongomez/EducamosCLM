@@ -1,4 +1,6 @@
 import 'dart:io';
+import 'dart:isolate';
+import 'dart:ui';
 
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:flutter/material.dart';
@@ -11,11 +13,18 @@ import 'pages/home_page.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await FlutterDownloader.initialize(debug: true);
+  await FlutterDownloader.initialize(debug: true, ignoreSsl: true);
+  FlutterDownloader.registerCallback(downloadCallback);
   if (Platform.isAndroid) {
     await AndroidInAppWebViewController.setWebContentsDebuggingEnabled(true);
   }
   runApp(MyApp());
+}
+
+void downloadCallback(String id, DownloadTaskStatus status, int progress) {
+  final SendPort send =
+      IsolateNameServer.lookupPortByName('downloader_send_port')!;
+  send.send([id, status, progress]);
 }
 
 class MyApp extends StatelessWidget {
