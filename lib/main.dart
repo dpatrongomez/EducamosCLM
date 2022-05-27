@@ -41,15 +41,15 @@ class MyApp extends StatelessWidget {
         lightColorScheme = lightDynamic.harmonized();
         // (Optional) Customize the scheme as desired. For example, one might
         // want to use a brand color to override the dynamic [ColorScheme.secondary].
-        lightColorScheme =
-            lightColorScheme.copyWith(primary: Color(0xff012d5a), secondary: Colors.orangeAccent);
+        lightColorScheme = lightColorScheme.copyWith(
+            primary: Color(0xff012d5a), secondary: Colors.orangeAccent);
         // (Optional) If applicable, harmonize custom colors.
         //lightCustomColors = lightCustomColors.harmonized(lightColorScheme);
 
         // Repeat for the dark color scheme.
         darkColorScheme = darkDynamic.harmonized();
-        darkColorScheme =
-            darkColorScheme.copyWith(primary: Color(0xff012d5a), secondary: Colors.orangeAccent);
+        darkColorScheme = darkColorScheme.copyWith(
+            primary: Color(0xff012d5a), secondary: Colors.orangeAccent);
         // darkCustomColors = darkCustomColors.harmonized(darkColorScheme);
 
         //_isDemoUsingDynamicColors = true; // ignore, only for demo purposes
@@ -58,25 +58,26 @@ class MyApp extends StatelessWidget {
         lightColorScheme = ColorScheme.fromSeed(
           seedColor: Color(0xff012d5a),
           primary: Color(0xff012d5a),
-          secondary: Colors.orangeAccent
         );
         darkColorScheme = ColorScheme.fromSeed(
           seedColor: Color(0xff012d5a),
           brightness: Brightness.dark,
-          primary: Color(0xff012d5a),
-          secondary: Colors.orangeAccent
         );
       }
       return MaterialApp(
           title: 'EducamosCLM',
           debugShowCheckedModeBanner: false,
-         theme: ThemeData(
+          theme: ThemeData(
             colorScheme: lightColorScheme,
-            //extensions: [lightCustomColors],
+            appBarTheme: AppBarTheme(
+              color: lightColorScheme.primary,
+            ),
           ),
           darkTheme: ThemeData(
             colorScheme: darkColorScheme,
-            //extensions: [darkCustomColors],
+            appBarTheme: AppBarTheme(
+              color: lightColorScheme.primary,
+            ),
           ),
           initialRoute: '/',
           routes: {
