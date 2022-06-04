@@ -56,13 +56,14 @@ class MyApp extends StatelessWidget {
       } else {
         // Otherwise, use fallback schemes.
         lightColorScheme = ColorScheme.fromSeed(
-          seedColor: Color(0xff012d5a),
-          primary: Color(0xff012d5a),
-        );
+            seedColor: Color(0xff012d5a),
+            primary: Color(0xff012d5a),
+            secondary: Colors.orangeAccent);
         darkColorScheme = ColorScheme.fromSeed(
-          seedColor: Color(0xff012d5a),
-          brightness: Brightness.dark,
-        );
+            seedColor: Color(0xff012d5a),
+            primary: Color(0xff012d5a),
+            brightness: Brightness.dark,
+            secondary: Colors.orangeAccent);
       }
       return MaterialApp(
           title: 'EducamosCLM',
@@ -76,7 +77,7 @@ class MyApp extends StatelessWidget {
           darkTheme: ThemeData(
             colorScheme: darkColorScheme,
             appBarTheme: AppBarTheme(
-              color: lightColorScheme.primary,
+              color: darkColorScheme.primary,
             ),
           ),
           initialRoute: '/',
