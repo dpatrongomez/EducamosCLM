@@ -88,12 +88,12 @@ class _InAppWebViewPageState extends State<InAppWebViewPage> {
                 },
                 onLoadStop: (controller, uri) async {
                   _webViewController = controller;
-                  String javascriptMetaString =
-                      "var meta = document.createElement('meta'); meta.setAttribute( 'name', 'viewport' ); meta.setAttribute( 'content', 'width = device-width, initial-scale = 1.0, user-scalable = yes' ); document.getElementsByTagName('head')[0].appendChild(meta)";
-                  _webViewController.evaluateJavascript(
-                      source: javascriptMetaString);
                   if (uri.toString().contains('CEC.jsp')) {
                     // Secretaría Virtual
+                    String javascriptMetaString =
+                        "var meta = document.createElement('meta'); meta.setAttribute( 'name', 'viewport' ); meta.setAttribute( 'content', 'width = device-width, initial-scale = 1.0, user-scalable = yes' ); document.getElementsByTagName('head')[0].appendChild(meta)";
+                    _webViewController.evaluateJavascript(
+                        source: javascriptMetaString);
                     String responsiveAndMenu =
                         "window.frames[1].document.querySelectorAll('frameset')[0].cols = '100%'; let menu = window.frames[1].document.querySelectorAll('frameset')[1]; window.frames[1].document.querySelectorAll('frameset')[1].remove(); window.frames.centro[1].document.querySelector('div.carousel-caption.d-none.d-md-block').attributes[0].value = 'carousel-caption d-md-block'";
                     _webViewController.evaluateJavascript(
@@ -143,11 +143,6 @@ class _InAppWebViewPageState extends State<InAppWebViewPage> {
       savedDir.create();
     }
     List<Cookie> cookies = await _cookieManager.getCookies(url: request.url);
-    List<Cookie> filteredCookies = cookies
-        .where((cookie) =>
-            cookie.name == 'JSESSIONIDSECVIR' ||
-            cookie.name == 'papassecvir.jccm.es')
-        .toList();
     String cookiesString = '';
     for (Cookie cookie in cookies) {
       cookiesString += '${cookie.name}=${cookie.value};';
