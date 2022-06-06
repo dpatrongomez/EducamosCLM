@@ -1,7 +1,7 @@
 name: educamosclm
 description: A new Flutter project.
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
-version: 2.1.1+18
+version: 2.1.1+19
 
 environment:
   sdk: ">=2.16.0 <3.0.0"

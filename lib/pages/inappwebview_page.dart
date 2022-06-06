@@ -87,7 +87,7 @@ class _InAppWebViewPageState extends State<InAppWebViewPage> {
                 },
                 onLoadStop: (controller, uri) async {
                   _webViewController = controller;
-                  if (uri.toString().contains('CEC.jsp')) {
+                  if (uri.toString().contains('/secvir/jsp/CEC.jsp')) {
                     // Secretaría Virtual
                     String javascriptMetaString =
                         "var meta = document.createElement('meta'); meta.setAttribute( 'name', 'viewport' ); meta.setAttribute( 'content', 'width = device-width, initial-scale = 1.0, user-scalable = yes' ); document.getElementsByTagName('head')[0].appendChild(meta)";
@@ -114,7 +114,7 @@ class _InAppWebViewPageState extends State<InAppWebViewPage> {
             )
           ],
         ),
-        drawer: actualUrl.contains('CEC.jsp')
+        drawer: actualUrl.contains('/secvir/jsp/CEC.jsp')
             ? MenuCEC(
                 controller: _webViewController,
               )
