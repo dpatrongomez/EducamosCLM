@@ -68,7 +68,6 @@ class _InAppWebViewPageState extends State<InAppWebViewPage> {
                     useShouldOverrideUrlLoading: true,
                   ),
                   android: AndroidInAppWebViewOptions(
-                      useWideViewPort: true,
                       useHybridComposition: true,
                       domStorageEnabled: true,
                       allowFileAccess: true,
