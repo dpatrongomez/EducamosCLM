@@ -36,11 +36,9 @@ class _InAppWebViewPageState extends State<InAppWebViewPage> {
                 if (actualUrl.contains('seleccionModulo.xhtml')) {
                   _webViewController.loadUrl(
                       urlRequest: URLRequest(
-                          url: Uri(
-                              scheme: 'https',
-                              host: 'papas.jccm.es',
-                              path:
-                                  '/accesopapas/j_spring_cas_security_logout')));
+                          url: WebUri(
+                    'https://educamosclm.castillalamancha.es/accesoeducamos/',
+                  )));
                 } else {
                   _webViewController.evaluateJavascript(
                       source:
@@ -61,18 +59,13 @@ class _InAppWebViewPageState extends State<InAppWebViewPage> {
                     : Container()),
             Expanded(
               child: InAppWebView(
-                initialUrlRequest: URLRequest(url: Uri.parse(_url)),
-                initialOptions: InAppWebViewGroupOptions(
-                  crossPlatform: InAppWebViewOptions(
-                    useOnDownloadStart: true,
-                    useShouldOverrideUrlLoading: true,
-                  ),
-                  android: AndroidInAppWebViewOptions(
-                      useHybridComposition: true,
-                      domStorageEnabled: true,
-                      allowFileAccess: true,
-                      displayZoomControls: true,
-                      cacheMode: AndroidCacheMode.LOAD_DEFAULT),
+                initialUrlRequest: URLRequest(url: WebUri(_url)),
+                initialSettings: InAppWebViewSettings(
+                  useHybridComposition: true,
+                  domStorageEnabled: true,
+                  allowFileAccess: true,
+                  displayZoomControls: true,
+                  cacheMode: CacheMode.LOAD_DEFAULT,
                 ),
                 onWebViewCreated: (InAppWebViewController controller) {
                   _webViewController = controller;
@@ -99,11 +92,10 @@ class _InAppWebViewPageState extends State<InAppWebViewPage> {
                         source: responsiveAndMenu);
                   }
                 },
-                androidOnPermissionRequest:
-                    (controller, origin, resources) async {
-                  return PermissionRequestResponse(
-                      resources: resources,
-                      action: PermissionRequestResponseAction.GRANT);
+                onPermissionRequest: (controller, request) async {
+                  return PermissionResponse(
+                      resources: request.resources,
+                      action: PermissionResponseAction.GRANT);
                 },
                 onUpdateVisitedHistory: (controller, url, isReload) {
                   setState(() {

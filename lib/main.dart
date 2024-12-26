@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'dart:isolate';
 import 'dart:ui';
 
 import 'package:dynamic_color/dynamic_color.dart';
@@ -16,15 +15,18 @@ Future main() async {
   await FlutterDownloader.initialize(debug: true, ignoreSsl: true);
   FlutterDownloader.registerCallback(downloadCallback);
   if (Platform.isAndroid) {
-    await AndroidInAppWebViewController.setWebContentsDebuggingEnabled(true);
+    await InAppWebViewController.setWebContentsDebuggingEnabled(true);
   }
   runApp(MyApp());
 }
 
-void downloadCallback(String id, DownloadTaskStatus status, int progress) {
-  final SendPort send =
-      IsolateNameServer.lookupPortByName('downloader_send_port')!;
-  send.send([id, status, progress]);
+void downloadCallback(
+  String id,
+  int status,
+  int progress,
+) {
+  IsolateNameServer.lookupPortByName('downloader_send_port')
+      ?.send([id, status, progress]);
 }
 
 class MyApp extends StatelessWidget {
@@ -71,14 +73,16 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             colorScheme: lightColorScheme,
             appBarTheme: AppBarTheme(
-              color: lightColorScheme.primary,
-            ),
+                color: lightColorScheme.primary,
+                titleTextStyle: TextStyle(color: Colors.white, fontSize: 20.0),
+                iconTheme: IconThemeData(color: Colors.white)),
           ),
           darkTheme: ThemeData(
             colorScheme: darkColorScheme,
             appBarTheme: AppBarTheme(
-              color: darkColorScheme.primary,
-            ),
+                color: darkColorScheme.primary,
+                titleTextStyle: TextStyle(color: Colors.white, fontSize: 20.0),
+                iconTheme: IconThemeData(color: Colors.white)),
           ),
           initialRoute: '/',
           routes: {

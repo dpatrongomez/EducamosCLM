@@ -10,14 +10,14 @@ class HomePage extends StatelessWidget {
         subtitle2: 'Notas, faltas de asistencia, etc.',
         subtitle3: 'Comunicación familias-docentes-alumnado.',
         img: 'assets/img/home/IconosEducamosCLM_Seguimiento.png',
-        url: 'https://papas.jccm.es/'),
+        url: 'https://educamosclm.castillalamancha.es/accesoeducamos/'),
     Item(
         title: 'SECRETARÍA VIRTUAL',
         subtitle1: 'Solicitud de admisión.',
         subtitle2: 'Matriculación, etc.',
         subtitle3: 'Tramitación de solicitudes.',
         img: 'assets/img/home/IconosEducamosCLM_Secretaria.png',
-        url: 'https://papas.jccm.es/'),
+        url: 'https://educamosclm.castillalamancha.es/accesoeducamos/'),
     Item(
         title: 'ENTORNO DE APRENDIZAJE',
         subtitle1: 'Gestión académica.',
@@ -47,7 +47,7 @@ class HomePage extends StatelessWidget {
         subtitle2: '',
         subtitle3: '',
         img: 'assets/img/home/IconosEducamosCLM_Evalua_0.png',
-        url: 'https://papas.jccm.es/')
+        url: 'https://educamosclm.castillalamancha.es/accesoeducamos/')
   ];
 
   @override
@@ -60,6 +60,8 @@ class HomePage extends StatelessWidget {
           centerTitle: true,
           bottom: TabBar(
             indicatorColor: Theme.of(context).colorScheme.secondary,
+            labelColor: Colors.white,
+            unselectedLabelColor: Colors.white70,
             tabs: [
               Tab(
                 icon: Icon(Icons.people),
