@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
-import 'pages/aulavirtual_page.dart';
 import 'pages/inappwebview_page.dart';
 import 'pages/home_page.dart';
 
@@ -88,7 +87,6 @@ class MyApp extends StatelessWidget {
           routes: {
             '/': (BuildContext context) => HomePage(),
             'webview': (BuildContext context) => InAppWebViewPage(),
-            'virtual': (BuildContext context) => AulaVirtualPage(),
           });
     });
   }

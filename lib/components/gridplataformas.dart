@@ -43,11 +43,11 @@ class GridPlataformas extends StatelessWidget {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Image.asset(
-                          data.img!,
-                          width: 42,
-                          color: Theme.of(context).colorScheme.primary,
-                        ),
+                        Image.asset(data.img!,
+                            width: 42,
+                            color: data.img!.endsWith('.webp')
+                                ? null
+                                : Theme.of(context).colorScheme.primary),
                         SizedBox(
                           height: 14,
                         ),
@@ -62,36 +62,39 @@ class GridPlataformas extends StatelessWidget {
                         SizedBox(
                           height: 8,
                         ),
-                        Text(
-                          data.subtitle1!,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              color: Colors.white70,
-                              fontSize: 11,
-                              fontWeight: FontWeight.w600),
-                        ),
-                        SizedBox(
-                          height: 4,
-                        ),
-                        Text(
-                          data.subtitle2!,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              color: Colors.white70,
-                              fontSize: 11,
-                              fontWeight: FontWeight.w600),
-                        ),
-                        SizedBox(
-                          height: 4,
-                        ),
-                        Text(
-                          data.subtitle3!,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              color: Colors.white70,
-                              fontSize: 11,
-                              fontWeight: FontWeight.w600),
-                        ),
+                        Column(
+                          spacing: 4,
+                          children: [
+                            Text(
+                              data.subtitle1!,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  color: Colors.white70,
+                                  fontSize: 11,
+                                  fontWeight: FontWeight.w600),
+                            ),
+                            data.subtitle2 != null
+                                ? Text(
+                                    data.subtitle2!,
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        color: Colors.white70,
+                                        fontSize: 11,
+                                        fontWeight: FontWeight.w600),
+                                  )
+                                : SizedBox(),
+                            data.subtitle3 != null
+                                ? Text(
+                                    data.subtitle2!,
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        color: Colors.white70,
+                                        fontSize: 11,
+                                        fontWeight: FontWeight.w600),
+                                  )
+                                : SizedBox(),
+                          ],
+                        )
                       ],
                     ),
                   ),

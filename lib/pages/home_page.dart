@@ -6,24 +6,19 @@ class HomePage extends StatelessWidget {
   final List<Item> itemsfamilias = [
     Item(
         title: 'SEGUIMIENTO EDUCATIVO',
-        subtitle1: 'Anterior Papás Comunicación.',
-        subtitle2: 'Notas, faltas de asistencia, etc.',
-        subtitle3: 'Comunicación familias-docentes-alumnado.',
-        img: 'assets/img/home/IconosEducamosCLM_Seguimiento.png',
+        subtitle1: 'Seguimiento del alumnado y comunicación entre familias y docentes.',
+        img: 'assets/img/home/SeguimientoEducativo.webp',
         url: 'https://educamosclm.castillalamancha.es/accesoeducamos/'),
     Item(
         title: 'SECRETARÍA VIRTUAL',
-        subtitle1: 'Solicitud de admisión.',
-        subtitle2: 'Matriculación, etc.',
-        subtitle3: 'Tramitación de solicitudes.',
-        img: 'assets/img/home/IconosEducamosCLM_Secretaria.png',
+        subtitle1: 'Presentación y seguimiento de los trámites de la gestión educativa para alumnado y familias.',
+        img: 'assets/img/home/SecretariaVirtual.webp',
         url: 'https://educamosclm.castillalamancha.es/accesoeducamos/'),
     Item(
-        title: 'ENTORNO DE APRENDIZAJE',
-        subtitle1: 'Gestión académica.',
-        subtitle2: 'Contenidos digitales.',
-        subtitle3: 'Clases Virtuales y herramientas colaborativas.',
-        img: 'assets/img/home/IconosEducamosCLM_EntornoAprendizaje.png'),
+        title: 'LeemosCLM',
+        subtitle1: 'Impulso a la lectura mediante préstamos de contenidos digitales, planes y clubes de lectura.',
+        img: 'assets/img/home/LeemosCLM.webp',
+        url: "https://leemosclm.odilotk.es/")
   ];
 
   final List<Item> itemsdocentes = [

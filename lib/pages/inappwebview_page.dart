@@ -33,12 +33,17 @@ class _InAppWebViewPageState extends State<InAppWebViewPage> {
             IconButton(
               icon: Icon(Icons.logout),
               onPressed: () {
-                if (actualUrl.contains('seleccionModulo.xhtml')) {
-                  _webViewController.loadUrl(
-                      urlRequest: URLRequest(
-                          url: WebUri(
-                    'https://educamosclm.castillalamancha.es/accesoeducamos/',
-                  )));
+                if (actualUrl.contains('cerbero.jccm.es/auth/')) {
+                  return Navigator.of(context).pop();
+                }
+                if (actualUrl.contains('/accesoeducamos/')) {
+                  _webViewController.evaluateJavascript(
+                      source:
+                          'javascript:document.querySelector("#userMenu").click()');
+
+                  _webViewController.evaluateJavascript(
+                      source:
+                          'javascript:document.querySelector("educamosclmfront-toolbar-access").querySelector("#logout").click()');
                 } else {
                   _webViewController.evaluateJavascript(
                       source:
