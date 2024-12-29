@@ -1,25 +1,29 @@
 name: Flutter action
-
-on:
+on: 
   push:
-    branches: [ master ]
-    
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
-    - uses: actions/checkout@v2.3.5
-    - uses: actions/setup-java@v2.3.1
+    - uses: actions/checkout@v3
+    - uses: actions/setup-java@v2
       with:
-        distribution: 'temurin'
-        java-version: '11'
-    - uses: subosito/flutter-action@v1.5.3
+        distribution: 'zulu'
+        java-version: '17'
+    - uses: subosito/flutter-action@v2.12.0
       with:
-        channel: 'beta'
+        channel: 'stable'
     - run: flutter pub get
-    - run: flutter build apk --debug
-    # Upload generated apk to the artifacts.
-    - uses: actions/upload-artifact@v2.2.4
+    - run: flutter build apk --debug --obfuscate --split-debug-info=symbols/
+    - name: Generate release tag
+      id: tag
+      run: |
+        echo "release_tag=APK_$(date +'%Y.%m.%d_%H-%M')" >> $GITHUB_ENV
+    - name: Upload APK
+      uses: ncipollo/release-action@v1.13.0
       with:
-        name: debug-apk
-        path: build/app/outputs/flutter-apk/app-debug.apk
+        tag: ${{ env.release_tag }}
+        artifacts: build/app/outputs/flutter-apk/*.apk
+        token: ${{ secrets.GITHUB_TOKEN }}
