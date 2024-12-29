@@ -4,7 +4,7 @@ import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 class MenuCEC extends StatelessWidget {
   final InAppWebViewController controller;
 
-  const MenuCEC({required this.controller});
+  const MenuCEC({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {

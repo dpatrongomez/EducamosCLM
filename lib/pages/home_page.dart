@@ -3,25 +3,28 @@ import '../model/item_model.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
-  final List<Item> itemsfamilias = [
+  static List<Item> itemsfamilias = [
     Item(
         title: 'SEGUIMIENTO EDUCATIVO',
-        subtitle1: 'Seguimiento del alumnado y comunicación entre familias y docentes.',
+        subtitle1:
+            'Seguimiento del alumnado y comunicación entre familias y docentes.',
         img: 'assets/img/home/SeguimientoEducativo.webp',
         url: 'https://educamosclm.castillalamancha.es/accesoeducamos/'),
     Item(
         title: 'SECRETARÍA VIRTUAL',
-        subtitle1: 'Presentación y seguimiento de los trámites de la gestión educativa para alumnado y familias.',
+        subtitle1:
+            'Presentación y seguimiento de los trámites de la gestión educativa para alumnado y familias.',
         img: 'assets/img/home/SecretariaVirtual.webp',
         url: 'https://educamosclm.castillalamancha.es/accesoeducamos/'),
     Item(
         title: 'LeemosCLM',
-        subtitle1: 'Impulso a la lectura mediante préstamos de contenidos digitales, planes y clubes de lectura.',
+        subtitle1:
+            'Impulso a la lectura mediante préstamos de contenidos digitales, planes y clubes de lectura.',
         img: 'assets/img/home/LeemosCLM.webp',
         url: "https://leemosclm.odilotk.es/")
   ];
 
-  final List<Item> itemsdocentes = [
+  static List<Item> itemsdocentes = [
     Item(
         title: 'ENTORNO COLABORATIVO',
         subtitle1: 'Microsoft Teams',
@@ -44,6 +47,8 @@ class HomePage extends StatelessWidget {
         img: 'assets/img/home/IconosEducamosCLM_Evalua_0.png',
         url: 'https://educamosclm.castillalamancha.es/accesoeducamos/')
   ];
+
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {

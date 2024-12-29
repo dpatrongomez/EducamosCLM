@@ -7,20 +7,22 @@ import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class InAppWebViewPage extends StatefulWidget {
+  const InAppWebViewPage({super.key});
+
   @override
   _InAppWebViewPageState createState() => _InAppWebViewPageState();
 }
 
 class _InAppWebViewPageState extends State<InAppWebViewPage> {
   late InAppWebViewController _webViewController;
-  CookieManager _cookieManager = CookieManager.instance();
+  final CookieManager _cookieManager = CookieManager.instance();
   HttpAuthCredentialDatabase httpAuthCredentialDatabase =
       HttpAuthCredentialDatabase.instance();
   double progress = 0;
   String actualUrl = '';
   @override
   Widget build(BuildContext context) {
-    final String _url = ModalRoute.of(context)!.settings.arguments as String;
+    final String url = ModalRoute.of(context)!.settings.arguments as String;
     return Scaffold(
         appBar: AppBar(
           title: Text('EducamosCLM'),
@@ -64,7 +66,7 @@ class _InAppWebViewPageState extends State<InAppWebViewPage> {
                     : Container()),
             Expanded(
               child: InAppWebView(
-                initialUrlRequest: URLRequest(url: WebUri(_url)),
+                initialUrlRequest: URLRequest(url: WebUri(url)),
                 initialSettings: InAppWebViewSettings(
                   useHybridComposition: true,
                   domStorageEnabled: true,
@@ -119,7 +121,7 @@ class _InAppWebViewPageState extends State<InAppWebViewPage> {
   }
 
   Future<String?> _findLocalPath() async {
-    var externalStorageDirPath;
+    String? externalStorageDirPath;
     if (Platform.isAndroid) {
       final directory = await getExternalStorageDirectory();
       externalStorageDirPath = directory?.path;
@@ -132,8 +134,8 @@ class _InAppWebViewPageState extends State<InAppWebViewPage> {
     if (!status.isGranted) {
       await Permission.storage.request();
     }
-    String _localPath = (await _findLocalPath())!;
-    final savedDir = Directory(_localPath);
+    String localPath = (await _findLocalPath())!;
+    final savedDir = Directory(localPath);
     bool hasExisted = await savedDir.exists();
     if (!hasExisted) {
       savedDir.create();
@@ -143,7 +145,7 @@ class _InAppWebViewPageState extends State<InAppWebViewPage> {
     for (Cookie cookie in cookies) {
       cookiesString += '${cookie.name}=${cookie.value};';
     }
-    final taskId = await FlutterDownloader.enqueue(
+    await FlutterDownloader.enqueue(
       headers: {
         HttpHeaders.cookieHeader: cookiesString,
         HttpHeaders.userAgentHeader: request.userAgent!,
@@ -153,13 +155,11 @@ class _InAppWebViewPageState extends State<InAppWebViewPage> {
       },
       url: request.url.toString(),
       fileName: request.suggestedFilename!.replaceAll(';', ''),
-      savedDir: _localPath,
+      savedDir: localPath,
       showNotification:
           true, // show download progress in status bar (for Android)
       openFileFromNotification: true,
       saveInPublicStorage: true,
     );
-
-    print(taskId);
   }
 }

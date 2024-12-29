@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class GridPlataformas extends StatelessWidget {
   final List<Item> myList;
   final String text;
-  const GridPlataformas({required this.myList, required this.text});
+  const GridPlataformas({super.key, required this.myList, required this.text});
 
   @override
   Widget build(BuildContext context) {
