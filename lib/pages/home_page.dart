@@ -58,6 +58,14 @@ class HomePage extends StatelessWidget {
         appBar: AppBar(
           title: Text('EducamosCLM'),
           centerTitle: true,
+          actions: [
+            IconButton(
+              icon: Icon(Icons.settings),
+              onPressed: () {
+                Navigator.pushNamed(context, '/settings');
+              },
+            ),
+          ],
           bottom: TabBar(
             indicatorColor: Theme.of(context).colorScheme.secondary,
             labelColor: Colors.white,

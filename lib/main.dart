@@ -1,13 +1,16 @@
 import 'dart:io';
 import 'dart:ui';
 
-import 'package:dynamic_color/dynamic_color.dart';
+import 'package:educamosclm/pages/settings/pages/privacy_page.dart';
+import 'package:educamosclm/pages/settings/pages/terms_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
+import 'package:dynamic_color/dynamic_color.dart';
 
-import 'pages/inappwebview_page.dart';
-import 'pages/home_page.dart';
+import 'package:educamosclm/pages/home_page.dart';
+import 'package:educamosclm/pages/inappwebview_page.dart';
+import 'package:educamosclm/pages/settings/settings_page.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -89,6 +92,9 @@ class MyApp extends StatelessWidget {
           routes: {
             '/': (BuildContext context) => HomePage(),
             'webview': (BuildContext context) => InAppWebViewPage(),
+            '/settings': (BuildContext context) => SettingsPage(),
+            PrivacyPage.routeName: (context) => const PrivacyPage(),
+            TermsPage.routeName: (context) => const TermsPage(),
           });
     });
   }
