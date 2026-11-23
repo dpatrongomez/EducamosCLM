@@ -15,13 +15,16 @@ jobs:
     - uses: subosito/flutter-action@v2.12.0
       with:
         channel: 'stable'
+        flutter-version: '3.50.1'
     - run: flutter pub get
     - run: flutter build apk --debug --obfuscate --split-debug-info=symbols/
     - name: Generate release tag
+      if: github.ref == 'refs/heads/master'
       id: tag
       run: |
         echo "release_tag=APK_$(date +'%Y.%m.%d_%H-%M')" >> $GITHUB_ENV
     - name: Upload APK
+      if: github.ref == 'refs/heads/master'
       uses: ncipollo/release-action@v1.13.0
       with:
         tag: ${{ env.release_tag }}
